@@ -36,13 +36,13 @@ variable "names" {
 }
 
 variable "per_folder_admins" {
-  type        = list(string)
+  type        = map(string)
   description = "List of IAM-style members per folder who will get extended permissions."
-  default = [
-    "group:gcp-ddt-developers@apszaz.com",
-    "group:gcp-ddt-qa@apszaz.com",
-    "group:gcp-ddt-ops@apszaz.com",
-  ]
+  default = {
+    dev = "group:gcp-ddt-developers@apszaz.com",
+    staging = "group:gcp-ddt-qa@apszaz.com",
+    production = "group:gcp-ddt-ops@apszaz.com",
+  }
 }
 
 variable "all_folder_admins" {

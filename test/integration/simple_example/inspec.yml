@@ -15,7 +15,7 @@ attributes:
     type: array
   - name: per_folder_admins
     required: true
-    type: array
-  - name: per_folder_admins
+    type: hash
+  - name: all_folder_admins
     required: true
     type: array

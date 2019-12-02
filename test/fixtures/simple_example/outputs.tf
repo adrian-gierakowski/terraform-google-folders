@@ -35,7 +35,7 @@ output "parent_type" {
 }
 
 output "per_folder_admins" {
-  description = "List of IAM-style members per folder who will get extended permissions."
+  description = "IAM-style members per folder who will get extended permissions."
   value       = var.per_folder_admins
 }
 
