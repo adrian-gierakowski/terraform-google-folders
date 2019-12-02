@@ -15,5 +15,6 @@
  */
 
 terraform {
-  required_version = ">= 0.12"
+  # 0.12.6 introduced for_each for resources
+  required_version = ">= 0.12.6"
 }

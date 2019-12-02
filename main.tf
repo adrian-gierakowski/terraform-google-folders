@@ -15,16 +15,21 @@
  */
 
 terraform {
-  required_version = ">= 0.12"
+  # 0.12.6 introduced for_each for resources
+  required_version = ">= 0.12.6"
 }
 
 locals {
   prefix = var.prefix == "" ? "" : "${var.prefix}-"
+  names_map = zipmap(var.names, var.names)
+  folders = values(google_folder.folders)
+  first_folder = local.folders[0]
 }
 
 resource "google_folder" "folders" {
-  count        = length(var.names)
-  display_name = "${local.prefix}${element(var.names, count.index)}"
+  for_each = local.names_map
+
+  display_name = "${local.prefix}${each.key}"
   parent       = "${var.parent}"
 }
 

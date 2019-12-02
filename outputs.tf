@@ -16,40 +16,45 @@
 
 output "folder" {
   description = "Folder resource (for single use)."
-  value       = google_folder.folders[0]
+  value       = local.first_folder
 }
 
 output "id" {
   description = "Folder id (for single use)."
-  value       = google_folder.folders[0].name
+  value       = local.first_folder.name
 }
 
 output "name" {
   description = "Folder name (for single use)."
-  value       = google_folder.folders[0].display_name
+  value       = local.first_folder.display_name
 }
 
 output "folders" {
+  description = "Folder resources."
+  value       = local.folders
+}
+
+output "folders_map" {
   description = "Folder resources."
   value       = google_folder.folders
 }
 
 output "ids" {
   description = "Folder ids."
-  value       = zipmap(var.names, slice(google_folder.folders[*].name, 0, length(var.names)))
+  value       = zipmap(var.names, slice(local.folders[*].name, 0, length(var.names)))
 }
 
 output "names" {
   description = "Folder names."
-  value       = zipmap(var.names, slice(google_folder.folders[*].display_name, 0, length(var.names)))
+  value       = zipmap(var.names, slice(local.folders[*].display_name, 0, length(var.names)))
 }
 
 output "ids_list" {
   description = "List of folder ids."
-  value       = google_folder.folders[*].name
+  value       = local.folders[*].name
 }
 
 output "names_list" {
   description = "List of folder names."
-  value       = google_folder.folders[*].display_name
+  value       = local.folders[*].display_name
 }
