@@ -38,7 +38,7 @@ resource "google_folder" "folders" {
 
 resource "google_folder_iam_binding" "owners" {
   count  = var.set_roles ? length(var.names) * length(var.folder_admin_roles) : 0
-  folder = google_folder.folders[floor(count.index / length(var.folder_admin_roles))].name
+  folder = local.folders[floor(count.index / length(var.folder_admin_roles))].name
   role   = var.folder_admin_roles[count.index % length(var.folder_admin_roles)]
 
   members = compact(
