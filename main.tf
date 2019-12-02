@@ -21,7 +21,7 @@ terraform {
 
 locals {
   prefix = var.prefix == "" ? "" : "${var.prefix}-"
-  folders_list = values(google_folder.folders)
+  folders_list = [for name in var.names: google_folder.folders[name]]
   first_folder = local.folders_list[0]
 
   name_role_pairs = setproduct(var.names, var.folder_admin_roles)
