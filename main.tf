@@ -22,8 +22,8 @@ terraform {
 locals {
   prefix = var.prefix == "" ? "" : "${var.prefix}-"
   names_map = zipmap(var.names, var.names)
-  folders = values(google_folder.folders)
-  first_folder = local.folders[0]
+  folders_list = values(google_folder.folders)
+  first_folder = local.folders_list[0]
 }
 
 resource "google_folder" "folders" {

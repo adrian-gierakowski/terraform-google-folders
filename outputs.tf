@@ -30,31 +30,35 @@ output "name" {
 }
 
 output "folders" {
-  description = "Folder resources."
-  value       = local.folders
+  description = "Folder resources as list."
+  value       = local.folders_list
 }
 
 output "folders_map" {
-  description = "Folder resources."
+  description = "Folder resources by name."
   value       = google_folder.folders
 }
 
 output "ids" {
   description = "Folder ids."
-  value       = zipmap(var.names, slice(local.folders[*].name, 0, length(var.names)))
+  value       = { for name, folder in google_folder.folders:
+    name => folder.name
+  }
 }
 
 output "names" {
   description = "Folder names."
-  value       = zipmap(var.names, slice(local.folders[*].display_name, 0, length(var.names)))
+  value       = { for name, folder in google_folder.folders:
+    name => folder.display_name
+  }
 }
 
 output "ids_list" {
   description = "List of folder ids."
-  value       = local.folders[*].name
+  value       = local.folders_list[*].name
 }
 
 output "names_list" {
   description = "List of folder names."
-  value       = local.folders[*].display_name
+  value       = local.folders_list[*].display_name
 }
