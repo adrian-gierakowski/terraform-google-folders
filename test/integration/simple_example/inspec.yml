@@ -13,6 +13,9 @@ attributes:
   - name: ids_list
     required: true
     type: array
+  - name: names_list
+    required: true
+    type: array
   - name: per_folder_admins
     required: true
     type: hash

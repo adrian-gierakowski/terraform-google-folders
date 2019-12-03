@@ -24,6 +24,11 @@ output "ids_list" {
   value       = module.example.ids_list
 }
 
+output "names_list" {
+  description = "List of folder names."
+  value       = module.example.names_list
+}
+
 output "parent_id" {
   description = "Id of the resource under which the folder will be placed."
   value       = var.parent_id
