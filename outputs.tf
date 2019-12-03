@@ -41,14 +41,14 @@ output "folders_map" {
 
 output "ids" {
   description = "Folder ids."
-  value       = { for name, folder in google_folder.folders:
+  value = { for name, folder in google_folder.folders :
     name => folder.name
   }
 }
 
 output "names" {
   description = "Folder names."
-  value       = { for name, folder in google_folder.folders:
+  value = { for name, folder in google_folder.folders :
     name => folder.display_name
   }
 }

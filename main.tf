@@ -20,18 +20,17 @@ terraform {
 }
 
 locals {
-  prefix = var.prefix == "" ? "" : "${var.prefix}-"
-  folders_list = [for name in var.names: google_folder.folders[name]]
+  prefix       = var.prefix == "" ? "" : "${var.prefix}-"
+  folders_list = [for name in var.names : google_folder.folders[name]]
   first_folder = local.folders_list[0]
 
   name_role_pairs = setproduct(var.names, var.folder_admin_roles)
   folder_admin_roles_map_data = zipmap(
-    [ for pair in local.name_role_pairs : "${pair[0]}-${pair[1]}" ],
-    [ for pair in local.name_role_pairs : {
-        name = pair[0]
-        role = pair[1]
-      }
-    ]
+    [for pair in local.name_role_pairs : "${pair[0]}-${pair[1]}"],
+    [for pair in local.name_role_pairs : {
+      name = pair[0]
+      role = pair[1]
+    }]
   )
 }
 
